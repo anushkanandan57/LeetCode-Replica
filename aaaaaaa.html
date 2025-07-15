@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Slider with Boundaries</title>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+     
+        
+        .category-slider {
+            display: flex;
+            align-items: center;
+            position: relative;
+            width: 80%;
+        }
+
+        .slider-container {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .category-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+            padding: 10px;
+            color: #333;
+            text-align: center;
+            text-decoration: none; /* Remove underline for links */
+        }
+
+        .icon {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .slider-btn {
+            background-color: #fff;
+            color: #333;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .slider-btn.left {
+            position: absolute;
+            left: -50px;
+        }
+
+        .slider-btn.right {
+            position: absolute;
+            right: -50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML Structure -->
+    <div class="category-slider">
+        <button class="slider-btn left">◀</button>
+        
+        <div class="slider-container">
+            <div class="slider">
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-clock icon"></i><p>New in</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-hamburger icon"></i><p>Food</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-gamepad icon"></i><p>Games</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-plane icon"></i><p>Travel</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-sim-card icon"></i><p>eSIMs</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-tshirt icon"></i><p>Apparel</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-tv icon"></i><p>Electronics</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-film icon"></i><p>Streaming</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-home icon"></i><p>Home</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-utensils icon"></i><p>Restaurants</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-music icon"></i><p>Entertainment</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-shopping-basket icon"></i><p>Groceries</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-heart icon"></i><p>Health & Beauty</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-car icon"></i><p>Automobiles</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fab fa-bitcoin icon"></i><p>Bitcoin</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-box-open icon"></i><p>Other bundles</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-shopping-cart icon"></i><p>Ecommerce</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-gift icon"></i><p>Experiences</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-biking icon"></i><p>Food Delivery</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-music icon"></i><p>Music</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-box icon"></i><p>Other products</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-paw icon"></i><p>Pets</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-phone icon"></i><p>Phone Codes</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-mobile-alt icon"></i><p>Prepaid phones</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-store icon"></i><p>Retail</p></a>
+                <a href="https://example.com/new-in" class="category-item" target="_blank"><i class="fas fa-phone-volume icon"></i><p>VoIP</p></a>
+            </div>
+        </div>
+        
+        <button class="slider-btn right">▶</button>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.querySelector('.slider');
+            const sliderContainer = document.querySelector('.slider-container');
+            const leftBtn = document.querySelector('.slider-btn.left');
+            const rightBtn = document.querySelector('.slider-btn.right');
+            let scrollAmount = 0;
+
+            // Calculate maximum scrollable width
+            const maxScroll = slider.scrollWidth - sliderContainer.offsetWidth;
+
+            leftBtn.addEventListener('click', () => {
+                scrollAmount += 1000; // Change this value to adjust scroll distance
+                if (scrollAmount > 0) {
+                    scrollAmount = 0; // Prevent scrolling beyond the left edge
+                }
+                slider.style.transform = `translateX(${scrollAmount}px)`;
+            });
+
+            rightBtn.addEventListener('click', () => {
+                scrollAmount -= 1000; // Change this value to adjust scroll distance
+                if (Math.abs(scrollAmount) > maxScroll) {
+                    scrollAmount = -maxScroll; // Prevent scrolling beyond the right edge
+                }
+                slider.style.transform = `translateX(${scrollAmount}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

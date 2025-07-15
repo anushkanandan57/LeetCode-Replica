@@ -1,0 +1,298 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Navbar Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            background-color: #1f1f1f;
+            padding: 10px 20px;
+            color: #ffffff;
+        }
+
+        /* Logo Styling */
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .navbar .logo img {
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        /* Left Navigation Links */
+        .navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #f39c12; /* Hover color */
+        }
+
+        /* Right Icons */
+        .navbar .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .navbar .nav-icons i {
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .navbar .nav-icons .user-icon {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+         /* Profile Picture */
+         .navbar .profile-pic {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #f39c12;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .navbar .profile-pic img {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: #333333;
+            padding: 10px;
+            border-radius: 8px;
+            width: 260px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .dropdown-menu .user-info {
+            text-align: center;
+            border-bottom: 1px solid #444;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .dropdown-menu .user-info h3 {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .dropdown-menu .user-info p {
+            font-size: 12px;
+            color: #f39c12;
+        }
+
+        /* Card Grid */
+        .dropdown-menu .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .dropdown-menu .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #444444;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .dropdown-menu .card i {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #f39c12;
+        }
+
+        .dropdown-menu .card:hover {
+            background-color: #555555;
+        }
+         /* Dropdown Menu */
+         .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #333333;
+            padding: 10px;
+            border-radius: 8px;
+            width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            gap: 10px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #444444;
+        }
+
+        /* Premium Button */
+        .navbar .premium-btn {
+            background-color: #ffa1161f;
+            color: #f39c12;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .navbar .premium-btn:hover{
+            background-color: #ffa11633;
+
+        } 
+    </style>
+</head>
+<body>
+
+<!-- Navbar HTML Structure -->
+<div class="navbar">
+    <!-- Logo and Links -->
+    <div class="logo">
+        <img src="Logo.webp" alt="Logo"> <!-- Placeholder for logo -->
+    
+    <div class="nav-links">
+        <a href="/Explore.html">Explore</a>
+        <a href="/Problem.HTML">Problems</a>
+        <a href="#">Contest</a>
+        <a href="/index.html">Discuss</a>
+        <a href="#">Interview</a>
+        <a href="#">Store</a>
+    </div>
+</div>
+
+    <!-- Right Icons and Profile -->
+    <div class="nav-icons">
+        <!-- Notifications -->
+        <i class="fas fa-bell"></i>
+        <i class="fas fa-fire"> 0</i>
+
+        <!-- User Profile Icon with Dropdown Menu -->
+        <div class="user-icon" onclick="toggleDropdown()">
+            <div class="profile-pic">
+                <img src="gojo.jpg" alt="User Profile"> <!-- Replace with actual user image -->
+            </div>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <div class="user-info">
+                   <a href="/Dashboard.html"> <div class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; margin: auto;">
+                        <img src="gojo.jpg" alt="User Profile"> <!-- Replace with actual user image -->
+                    </div>
+                </a>
+                    <h3 style="color: white;">Aditya Agarwal</h3>
+                    <p>Access all features with our Premium subscription!</p>
+                </div>
+                <div class="card-grid">
+                    <div class="card">
+                        <i class="fas fa-list"></i>
+                        <span>My Lists</span>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-book"></i>
+                        <span>Notebook</span>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Submissions</span>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Progress</span>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-gem"></i>
+                        <span>Points</span>
+                    </div>
+                </div>
+                    <div>
+                    <a href="#"><i class="fas fa-flask"></i> Try New Features</a>
+                <a href="#"><i class="fas fa-box"></i> Orders</a>
+                <a href="#"><i class="fas fa-tools"></i> My Playgrounds</a>
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                <a href="#"><i class="fas fa-adjust"></i> Appearance</a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+            </div>
+            </div>
+                </div>
+                    <!-- Premium Button -->
+        <a href="#" class="premium-btn">Premium</a>
+            </div>
+                <!-- Premium Button -->
+        
+        </div>
+
+    
+    </div>
+</div>
+
+<script>
+    // JavaScript to toggle dropdown menu visibility
+    function toggleDropdown() {
+        const dropdownMenu = document.getElementById("dropdownMenu");
+        dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+    }
+
+    // Close the dropdown if clicked outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.profile-pic') && !event.target.closest('.user-icon')) {
+            const dropdowns = document.getElementsByClassName("dropdown-menu");
+            for (let i = 0; i < dropdowns.length; i++) {
+                const openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'block') {
+                    openDropdown.style.display = 'none';
+                }
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

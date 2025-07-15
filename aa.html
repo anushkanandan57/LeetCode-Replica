@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Layout</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .card { background-color: #222; color: white; border: none; }
+    .badge, .stats-text { font-size: 0.8rem; }
+    .highlight { background-color: #28a745; padding: 0.5rem; border-radius: 4px; }
+  </style>
+</head>
+<body style="background-color: #1a1a1a; color: #fff;">
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Left Column (Profile and Stats) -->
+      <div class="col-md-4">
+        <div class="card p-3 mb-3">
+          <div class="d-flex align-items-center">
+            <img src="profile.jpg" alt="Profile Picture" class="rounded-circle" width="60" height="60">
+            <div class="ml-3">
+              <h5>Aditya Agarwal</h5>
+              <p>Rank: 2,520,887</p>
+            </div>
+          </div>
+          <button class="btn btn-success mt-3">Edit Profile</button>
+          <hr>
+          <p><i class="fas fa-map-marker-alt"></i> India</p>
+          <p><i class="fas fa-link"></i> <a href="#" class="text-white">aditya22.bio.link</a></p>
+          <div class="d-flex flex-wrap">
+            <span class="badge bg-secondary m-1">java</span>
+            <span class="badge bg-secondary m-1">data-structures</span>
+            <span class="badge bg-secondary m-1">algorithm</span>
+            <span class="badge bg-secondary m-1">c++</span>
+            <span class="badge bg-secondary m-1">python</span>
+          </div>
+        </div>
+        <!-- Community Stats Section -->
+        <div class="card p-3 mb-3">
+          <h6>Community Stats</h6>
+          <p>Views: <span class="stats-text">13</span></p>
+          <p>Solutions: <span class="stats-text">11</span></p>
+          <p>Reputation: <span class="stats-text">0</span></p>
+        </div>
+      </div>
+
+      <!-- Right Column (Main Dashboard) -->
+      <div class="col-md-8">
+        <!-- Top Stats Row -->
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <div class="card p-3 text-center">
+              <h6>Contest Rating</h6>
+              <h3>1,429</h3>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card p-3 text-center">
+              <h6>Solved Problems</h6>
+              <h3>24/3337</h3>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card p-3 text-center">
+              <h6>Badges</h6>
+              <span class="highlight">2</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Submissions & Streaks -->
+        <div class="card p-3 mb-3">
+          <h6>Submissions in the past year</h6>
+          <div class="d-flex justify-content-between">
+            <span>143 submissions</span>
+            <span>Total active days: 100</span>
+          </div>
+          <!-- Placeholder for submission graph -->
+          <div class="d-flex flex-wrap mt-2" style="height: 80px;">
+            <div class="highlight m-1" style="width: 10px;"></div>
+            <!-- Repeat the div above for each submission day -->
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="card p-3">
+          <h6>Recent Activity</h6>
+          <div class="btn-group mb-2">
+            <button class="btn btn-outline-secondary">Recent AC</button>
+            <button class="btn btn-outline-secondary">List</button>
+            <button class="btn btn-outline-secondary">Solutions</button>
+            <button class="btn btn-outline-secondary">Discuss</button>
+          </div>
+          <p>Faulty Keyboard - 7 hours ago</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

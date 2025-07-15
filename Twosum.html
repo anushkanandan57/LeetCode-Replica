@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode IDE Clone</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Global styling */
+        body {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: Arial, sans-serif;
+        }
+
+        .container-fluid {
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+        }
+
+        /* Left Panel (Problem Description) */
+        .left-panel {
+            width: 35%;
+            background-color: #252526;
+            padding: 15px;
+            overflow-y: auto;
+            border-right: 1px solid #333;
+        }
+
+        .left-panel h5 {
+            color: #e8e8e8;
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .left-panel .badge,
+        .left-panel .btn {
+            font-size: 0.8rem;
+            margin-right: 5px;
+            color: #d4d4d4;
+        }
+
+        .left-panel code {
+            background-color: #333;
+            padding: 2px 5px;
+            color: #dcdcaa;
+        }
+
+        .btn-hint {
+            background-color: #444;
+            border: none;
+            color: #d4d4d4;
+        }
+
+        /* Right Panel (IDE and Test Cases) */
+        .right-panel {
+            width: 65%;
+            background-color: #1e1e1e;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Code Editor with Line Numbers */
+        .code-editor-container {
+            display: flex;
+            flex-direction: row;
+            flex-grow: 1;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .line-numbers {
+            background-color: #252526;
+            color: #858585;
+            padding: 15px 10px;
+            text-align: right;
+            user-select: none;
+            min-width: 40px;
+        }
+
+        .code-editor {
+            flex-grow: 1;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            font-family: monospace;
+            overflow-y: auto;
+            white-space: pre;
+            outline: none;
+        }
+
+        .line-numbers div,
+        .code-editor pre {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Buttons */
+        .btn-run,
+        .btn-submit {
+            width: 90px;
+            margin: 10px 5px;
+            padding: 6px 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Test Cases Section */
+        .test-cases {
+            margin-top: 20px;
+            background-color: #252526;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .test-cases .nav-link.active {
+            background-color: #333;
+            color: #e8e8e8;
+        }
+
+        .test-case-input {
+            background-color: #333;
+            border: none;
+            color: #d4d4d4;
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border-radius: 3px;
+        }
+         /* Navbar Container */
+         .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #121212;
+            padding: 10px 20px;
+            color: #ffffff;
+            height: 50px;
+        }
+
+        /* Left Section */
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .navbar-left span {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        /* Middle Section */
+        .navbar-middle {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .run-btn, .submit-btn {
+            background-color: #333;
+            color: #ffffff;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .run-btn {
+            background-color: #4CAF50; /* Green color for Run */
+        }
+
+        .submit-btn {
+            background-color: #333; /* Default background for Submit */
+            color: #4CAF50;
+        }
+
+        /* Right Section */
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .navbar-right i {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .profile-pic {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #ffa116; /* Border color for Premium */
+            cursor: pointer;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: auto;
+        }
+
+        .premium-btn {
+            background-color: #ffa1161f;
+            color: #ffa116;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .premium-btn:hover {
+            background-color: #ffa11633;
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: #333333;
+            padding: 10px;
+            border-radius: 8px;
+            width: 260px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .dropdown-menu .user-info {
+            text-align: center;
+            border-bottom: 1px solid #444;
+            padding: 10px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .dropdown-menu .user-info h3 {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #ffffff;
+        }
+
+        .dropdown-menu .user-info p {
+            font-size: 12px;
+            color: #f39c12;
+        }
+
+        .dropdown-menu .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .dropdown-menu .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #444444;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .dropdown-menu .card i {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #f39c12;
+        }
+
+        .dropdown-menu .card:hover {
+            background-color: #555555;
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            gap: 10px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #444444;
+        }
+        .icon-button {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #202020;
+  }
+
+  .icon-button i {
+    margin-right: 8px;
+    color: #d77f32; /* Color for the debug icon */
+  }
+
+  .icon-button:hover {
+    background-color: #222222;
+  }
+  nav-tabs {
+    background-color: #555555;
+  }
+  
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <!-- Left Section -->
+        <div class="navbar-left">
+            <i class="fas fa-angle-left"></i>
+            <i class="fas fa-bars"></i>
+            <span>Problem List</span>
+            <i class="fas fa-chevron-left"></i>
+            <i class="fas fa-chevron-right"></i>
+            <i class="fas fa-random"></i>
+        </div>
+
+        <!-- Middle Section -->
+        <div class="navbar-middle">
+            <button class="icon-button">
+                <!-- Debug Icon SVG -->
+                <i class="fas fa-bug"></i></button>
+            <button class="run-btn"><i class="fas fa-play"></i> Run</button>
+            <button class="submit-btn"><i class="fas fa-upload"></i> Submit</button>
+        </div>
+
+        <!-- Right Section -->
+        <div class="navbar-right">
+            <i class="fas fa-th"></i>
+            <i class="fas fa-cog"></i>
+            <i class="fas fa-fire"> 0</i>
+
+            <!-- User Profile Icon with Dropdown Menu -->
+            <div class="user-icon" onclick="toggleDropdown()">
+                <div class="profile-pic">
+                    <img src="gojo.jpg" alt="User Profile"> <!-- Replace with actual user image -->
+                </div>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="user-info">
+                       <a href="/Dashboard.html">
+                            <div class="profile-pic" style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; margin: auto;">
+                                <img src="gojo.jpg" alt="User Profile">
+                            </div>
+                        </a>
+                        <h3>Aditya Agarwal</h3>
+                        <p>Access all features with our Premium subscription!</p>
+                    </div>
+                    <div class="card-grid">
+                        <div class="card">
+                            <i class="fas fa-list"></i>
+                            <span>My Lists</span>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-book"></i>
+                            <span>Notebook</span>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Submissions</span>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Progress</span>
+                        </div>
+                        <div class="card">
+                            <i class="fas fa-gem"></i>
+                            <span>Points</span>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#"><i class="fas fa-flask"></i> Try New Features</a>
+                        <a href="#"><i class="fas fa-box"></i> Orders</a>
+                        <a href="#"><i class="fas fa-tools"></i> My Playgrounds</a>
+                        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#"><i class="fas fa-adjust"></i> Appearance</a>
+                        <a href="#"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="premium-btn">Premium</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById("dropdownMenu");
+            dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.closest('.user-icon')) {
+                const dropdownMenu = document.getElementById("dropdownMenu");
+                dropdownMenu.style.display = 'none';
+            }
+        };
+    </script>
+    <div class="container-fluid">
+        <!-- Left Panel (Problem Description) -->
+        <div class="left-panel">
+            <ul class="nav nav-tabs mb-3" id="descriptionTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                        data-bs-target="#description" type="button" role="tab"style="text-decoration: none;
+    color: black;">Description</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="editorial-tab" data-bs-toggle="tab" data-bs-target="#editorial"
+                        type="button" role="tab" style="text-decoration: none;
+    color: white;"style="text-decoration: none;
+    color: white;">Editorial</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="solutions-tab" data-bs-toggle="tab" data-bs-target="#solutions"
+                        type="button" role="tab"style="text-decoration: none;
+    color: white;">Solutions</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="submissions-tab" data-bs-toggle="tab" data-bs-target="#submissions"
+                        type="button" role="tab"style="text-decoration: none;
+    color: white;">Submissions</button>
+                </li>
+            </ul>
+
+            <!-- Problem Title and Tags -->
+            <div class="d-flex align-items-center mb-3">
+                <h5>1. Two Sum</h5>
+                <span class="badge bg-success">Easy</span>
+            </div>
+            <div class="d-flex align-items-center mb-3">
+                <button class="btn btn-sm btn-outline-secondary">Topics</button>
+                <button class="btn btn-sm btn-outline-secondary">Companies</button>
+                <button class="btn btn-sm btn-hint">Hint</button>
+            </div>
+
+            <div class="tab-content" id="descriptionTabsContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel"
+                    aria-labelledby="description-tab">
+                    <p>Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices
+                        of the two numbers such that they add up to <code>target</code>.</p>
+                    <p>You may assume that each input would have <b>exactly one solution</b>, and you may not use the
+                        same element twice.</p>
+                    <p>You can return the answer in any order.</p>
+                    <hr>
+                    <div class="example">
+                        <h6>Example 1:</h6>
+                        <p><strong>Input:</strong> nums = [2,7,11,15], target = 9</p>
+                        <p><strong>Output:</strong> [0,1]</p>
+                        <p><em>Explanation:</em> Because nums[0] + nums[1] == 9, we return [0, 1].</p>
+                        
+                    </div>
+                    <div class="example">
+                        <h6>Example 2:</h6>
+                        <p><strong>Input:</strong> nums = [3,2,4], target = 6</p>
+                        <p><strong>Output:</strong> [1,2]</p>
+                       
+                    </div>
+                    <div class="example">
+                        <h6>Example 3:</h6>
+                        <p><strong>Input:</strong> nums = [3,3], target = 6</p>
+                        <p><strong>Output:</strong> [0,1]</p>
+                    </div>
+
+                    <div>
+                        Constraints:<br>
+<br>
+2 <= nums.length <= 10^4<br>
+-10^9 <= nums[i] <= 10^9<br>
+-10^9 <= target <= 10^9<br>
+Only one valid answer exists.<br>
+ 
+<br><br>
+Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
+                    </div>
+                       
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel (IDE and Test Cases) -->
+        <div class="right-panel">
+            <h5>Code</h5>
+            <div class="mb-2">
+                <label for="languageSelect" class="form-label">Select Language:</label>
+                <select id="languageSelect" class="form-select" aria-label="Language select" style="width: 30%;">
+                    <option value="Java">Java</option>
+                    <option value="Python">Python</option>
+                    <option value="C++">C++</option>
+                    <option value="PHP">PHP</option>
+                    <option value="C">C</option>
+                    <option value="PHP">PHP</option>
+                    <option value="Swift">Swift</option>
+                    <option value="Kotlin">Kotlin</option>
+                    <option value="Dart">Dart</option>
+                    <option value="Go">Go</option>
+                    <option value="Ruby">Ruby</option>
+                    <option value="Scala">Scala</option>
+                    <option value="Rust">Rust</option>
+                    <option value="Racket">Racket</option>
+                    <option value="Erlang">Erlang</option>
+                    <option value="Elixir">Elixir</option>
+
+                    <!-- Add more languages as needed -->
+                </select>
+            </div>
+
+            <div class="code-editor-container">
+                <div class="line-numbers" id="lineNumbers"></div>
+                <pre class="code-editor" id="codeEditor" contenteditable="true">// Write your code here...</pre>
+            </div>
+
+           
+            <!-- Test Cases Section -->
+            <div class="test-cases">
+                <h5>Test Cases</h5>
+                <ul class="nav nav-tabs mb-3" id="testCasesTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="case1-tab" data-bs-toggle="tab" data-bs-target="#case1"
+                            type="button" role="tab"style="text-decoration: none;
+    color: white;">Case 1</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="case2-tab" data-bs-toggle="tab" data-bs-target="#case2"
+                            type="button" role="tab" style="text-decoration: none;
+    color: white;">Case 2</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="case3-tab" data-bs-toggle="tab" data-bs-target="#case3"
+                            type="button" role="tab" style="text-decoration: none;
+    color: white;" >Case 3</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="testCasesContent">
+                    <div class="tab-pane fade show active" id="case1" role="tabpanel" aria-labelledby="case1-tab">
+                        <label>nums:</label>
+                        <input type="text" class="test-case-input" placeholder="[2,7,11,15]">
+                        <label>target:</label>
+                        <input type="text" class="test-case-input" placeholder="9">
+                    </div>
+                    <div class="tab-pane fade show active" id="case2" role="tabpanel" aria-labelledby="case2-tab">
+                        <label>nums:</label>
+                        <input type="text" class="test-case-input" placeholder="[4,98,23]">
+                        <label>target:</label>
+                        <input type="text" class="test-case-input" placeholder="4">
+                    </div>
+                    <div class="tab-pane fade show active" id="case3" role="tabpanel" aria-labelledby="case3-tab">
+                        <label>nums:</label>
+                        <input type="text" class="test-case-input" placeholder="[1,4,3,2]">
+                        <label>target:</label>
+                        <input type="text" class="test-case-input" placeholder="69">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const codeEditor = document.getElementById("codeEditor");
+        const lineNumbers = document.getElementById("lineNumbers");
+
+        function updateLineNumbers() {
+            const lines = codeEditor.innerText.split("\n").length;
+            lineNumbers.innerHTML = "";
+            for (let i = 1; i <= lines; i++) {
+                const lineNumber = document.createElement("div");
+                lineNumber.textContent = i;
+                lineNumbers.appendChild(lineNumber);
+            }
+        }
+
+        codeEditor.addEventListener("input", updateLineNumbers);
+
+        // Initialize line numbers on page load
+        updateLineNumbers();
+    </script>
+</body>
+
+</html>

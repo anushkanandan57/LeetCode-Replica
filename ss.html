@@ -1,0 +1,225 @@
+<div class="category-slider" style="background-color: white; padding: 20px;">
+    <button class="slider-btn left">◀</button>
+
+    <div class="slider-container">
+        <div class="slider">
+            <!-- Category items with emojis -->
+            <a href="https://example.com/new-in" class="category-item" target="_blank">
+                <span class="emoji">🆕</span>
+                <p>New in</p>
+            </a>
+            <a href="https://example.com/food" class="category-item" target="_blank">
+                <span class="emoji">🍔</span>
+                <p>Food</p>
+            </a>
+            <a href="https://example.com/games" class="category-item" target="_blank">
+                <span class="emoji">🎮</span>
+                <p>Games</p>
+            </a>
+            <a href="https://example.com/travel" class="category-item" target="_blank">
+                <span class="emoji">✈️</span>
+                <p>Travel</p>
+            </a>
+            <a href="https://example.com/esim" class="category-item" target="_blank">
+                <span class="emoji">📱</span>
+                <p>eSIMs</p>
+            </a>
+            <a href="https://example.com/apparel" class="category-item" target="_blank">
+                <span class="emoji">👕</span>
+                <p>Apparel</p>
+            </a>
+            <a href="https://example.com/electronics" class="category-item" target="_blank">
+                <span class="emoji">📺</span>
+                <p>Electronics</p>
+            </a>
+            <a href="https://example.com/streaming" class="category-item" target="_blank">
+                <span class="emoji">📽️</span>
+                <p>Streaming</p>
+            </a>
+            <a href="https://example.com/home" class="category-item" target="_blank">
+                <span class="emoji">🏠</span>
+                <p>Home</p>
+            </a>
+            <a href="https://example.com/restaurants" class="category-item" target="_blank">
+                <span class="emoji">🍽️</span>
+                <p>Restaurants</p>
+            </a>
+            <a href="https://example.com/entertainment" class="category-item" target="_blank">
+                <span class="emoji">🎉</span>
+                <p>Entertainment</p>
+            </a>
+            <a href="https://example.com/groceries" class="category-item" target="_blank">
+                <span class="emoji">🛒</span>
+                <p>Groceries</p>
+            </a>
+            <a href="https://example.com/health" class="category-item" target="_blank">
+                <span class="emoji">❤️</span>
+                <p>Health</p>
+            </a>
+            <a href="https://example.com/automobiles" class="category-item" target="_blank">
+                <span class="emoji">🚗</span>
+                <p>Automobiles</p>
+            </a>
+            <a href="https://example.com/bitcoin" class="category-item" target="_blank">
+                <span class="emoji">₿</span>
+                <p>Bitcoin</p>
+            </a>
+            <a href="https://example.com/other-bundles" class="category-item" target="_blank">
+                <span class="emoji">📦</span>
+                <p>Other bundles</p>
+            </a>
+            <a href="https://example.com/ecommerce" class="category-item" target="_blank">
+                <span class="emoji">🛍️</span>
+                <p>Ecommerce</p>
+            </a>
+            <a href="https://example.com/experiences" class="category-item" target="_blank">
+                <span class="emoji">🎁</span>
+                <p>Experiences</p>
+            </a>
+            <a href="https://example.com/food-delivery" class="category-item" target="_blank">
+                <span class="emoji">🚚</span>
+                <p>Food Delivery</p>
+            </a>
+            <a href="https://example.com/music" class="category-item" target="_blank">
+                <span class="emoji">🎵</span>
+                <p>Music</p>
+            </a>
+            <a href="https://example.com/other-products" class="category-item" target="_blank">
+                <span class="emoji">📦</span>
+                <p>Other products</p>
+            </a>
+            <a href="https://example.com/pets" class="category-item" target="_blank">
+                <span class="emoji">🐾</span>
+                <p>Pets</p>
+            </a>
+            <a href="https://example.com/phone-codes" class="category-item" target="_blank">
+                <span class="emoji">📞</span>
+                <p>Phone Codes</p>
+            </a>
+            <a href="https://example.com/prepaid-phones" class="category-item" target="_blank">
+                <span class="emoji">📱</span>
+                <p>Prepaid phones</p>
+            </a>
+            <a href="https://example.com/retail" class="category-item" target="_blank">
+                <span class="emoji">🏬</span>
+                <p>Retail</p>
+            </a>
+            <a href="https://example.com/voip" class="category-item" target="_blank">
+                <span class="emoji">📞</span>
+                <p>VoIP</p>
+            </a>
+        </div>
+    </div>
+
+    <button class="slider-btn right">▶</button>
+</div>
+
+<style>
+    .category-slider {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .slider-container {
+        overflow: hidden;
+        width: 100%;
+    }
+    .slider {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+    .category-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        margin: 0 10px;
+        color: black; /* Change to black for better visibility */
+        padding-right: 10px;
+        padding-left: 10px;
+        background-color: white; /* White background */
+        border-radius: 10px; /* Rounded corners */
+        transition: transform 0.3s;
+        width: 80px; /* Set a fixed width for each item */
+        text-align: center; /* Center the text */
+        overflow: hidden; /* Hide overflow */
+    }
+    .category-item:hover {
+        transform: scale(1.05);
+    }
+    .category-item p {
+        margin: 0; /* Remove default margin */
+        overflow: hidden; /* Hide overflow */
+        text-overflow: ellipsis; /* Show ellipsis */
+        white-space: nowrap; /* Prevent text from wrapping */
+        width: 100%; /* Ensure it fills the width */
+    }
+    .icon {
+        width: 50px;
+        height: 50px;
+        background-color: white;
+        color: black;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .slider-btn {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+
+
+       }
+       
+       
+       .category-item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    min-width: 90px; /* Set a minimum width for each category item */
+   
+}
+
+.category-item p {
+    font-size: 15px; /* Increase font size for the text */
+}
+
+.category-item .emoji {
+    font-size: 34px; /* Adjust the emoji size as needed */
+}
+
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const slider = document.querySelector('.slider');
+        const sliderContainer = document.querySelector('.slider-container');
+        const leftBtn = document.querySelector('.slider-btn.left');
+        const rightBtn = document.querySelector('.slider-btn.right');
+        let scrollAmount = 0;
+
+        // Calculate maximum scrollable width
+        const maxScroll = slider.scrollWidth - sliderContainer.offsetWidth;
+
+        leftBtn.addEventListener('click', () => {
+            scrollAmount += 1000;
+            if (scrollAmount > 0) {
+                scrollAmount = 0;
+            }
+            slider.style.transform = `translateX(${scrollAmount}px)`;
+        });
+
+        rightBtn.addEventListener('click', () => {
+            scrollAmount -= 1000;
+            if (Math.abs(scrollAmount) > maxScroll) {
+                scrollAmount = -maxScroll;
+            }
+            slider.style.transform = `translateX(${scrollAmount}px)`;
+        });
+    });
+</script>
